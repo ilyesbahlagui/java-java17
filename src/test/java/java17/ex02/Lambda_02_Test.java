@@ -17,14 +17,14 @@ public class Lambda_02_Test {
 
     // tag::PersonToAccountMapper[]
     interface PersonToAccountMapper {
-        Account map(Person p);
+        Account transfome(Person p);
     }
     // end::PersonToAccountMapper[]
 
     // tag::map[]
-    private List<Account> map(List<Person> personList, PersonToAccountMapper mapper) {
+    private List<Account> transformList(List<Person> personList, PersonToAccountMapper mapper) {
         List<Account> accounts = new ArrayList<>();
-        personList.forEach(p -> accounts.add(mapper.map(p)));
+        personList.forEach(p -> accounts.add(mapper.transfome(p)));
         return accounts;
     }
     // end::map[]
@@ -38,7 +38,7 @@ public class Lambda_02_Test {
 
         // TODO transformer la liste de personnes en liste de comptes
         // TODO tous les objets comptes ont un solde à 100 par défaut
-        List<Account> result = map(personList, null);
+        List<Account> result = transformList(personList, person -> new Account(person, 100));
 
         assert result.size() == personList.size();
         for (Account account : result) {
